@@ -11,14 +11,21 @@ export type Generated<T> = T extends ColumnType<infer S, infer I, infer U>
 
 export type Timestamp = ColumnType<Date, Date | string, Date | string>;
 
+export interface Employee {
+  id: Generated<string>;
+  name: string;
+  tenant_id: string;
+}
+
 export interface Tenant {
   connection_string: string | null;
   created_at: Generated<Timestamp>;
   has_instance: Generated<boolean | null>;
-  id: Generated<number>;
+  id: Generated<string>;
   name: string;
 }
 
 export interface DB {
+  employee: Employee;
   tenant: Tenant;
 }
